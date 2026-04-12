@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # snow_lm_last_run.zsh
 # Purpose: return date string / status code for last run

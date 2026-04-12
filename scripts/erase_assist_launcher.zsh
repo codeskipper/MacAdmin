@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # script: eacs_runner.zsh
 # purpose: self-service script so a user can run Erase Assistant

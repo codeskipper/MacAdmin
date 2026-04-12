@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 ## Sensor to report if a pkg is installed according to its receipt, what version or timestamp
 

@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # script: console_user_promote.zsh
 # purpose: service script to promote users logged into the console of a Mac

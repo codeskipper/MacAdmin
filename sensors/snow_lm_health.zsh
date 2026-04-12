@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # snow_lm_last_health.zsh
 # Purpose: return status for installation

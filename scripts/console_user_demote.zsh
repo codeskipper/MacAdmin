@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # script: console_user_demote.zsh
 # purpose: service script to demote users logged into the console of a Mac

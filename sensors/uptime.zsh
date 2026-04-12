@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 boottime_epoch_seconds=$( /usr/sbin/sysctl -n kern.boottime | awk -F'[ ,]' '{print $4}' )
 
