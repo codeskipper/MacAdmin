@@ -4,9 +4,9 @@
 preference_file_path="/Library/Preferences/com.apple.powerd.charging.plist"
 policies_key="policies"
 
-# check if the preference file exists, if not return "Not installed"
+# check if the preference file exists
 if [[ ! -f "$preference_file_path" ]]; then
-  echo "No powerd charging plist file found"
+  echo "No powerd charging plist file found, should be there on macOS ≥ 26.4"
   exit 0
 fi
 
@@ -36,7 +36,7 @@ rm -f "$tmp_plist"
 if [[ -n "$soclimit" ]]; then
   echo "$soclimit"
 else
-  echo "No soclimit setting found"
+  echo "No soclimit setting found, user may not have set it"
 fi
 
 exit 0
