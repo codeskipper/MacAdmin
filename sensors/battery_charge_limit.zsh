@@ -6,15 +6,15 @@ policies_key="policies"
 
 # check if the preference file exists, if not return "Not installed"
 if [[ ! -f "$preference_file_path" ]]; then
-  echo "Not installed"
+  echo "No powerd charging plist file found"
   exit 0
 fi
 
 
-# policies is stored as base64 plist data in this file
+# policies are stored as base64 plist data in this file
 policies_b64=$(/usr/bin/plutil -extract "$policies_key" raw -o - "$preference_file_path" 2>/dev/null)
 if [[ -z "$policies_b64" ]]; then
-  echo "No battery charging policies set"
+  echo "No battery charging policy data found"
   exit 0
 fi
 
@@ -23,7 +23,7 @@ tmp_plist="/tmp/battery_charging_policies.plist"
 printf '%s' "$policies_b64" | /usr/bin/base64 -D 2>/dev/null > "$tmp_plist"
 
 if [[ ! -s "$tmp_plist" ]]; then
-  echo "soclimit is NOT set"
+  echo "No battery charging policies found"
   rm -f "$tmp_plist"
   exit 0
 fi
@@ -36,7 +36,7 @@ rm -f "$tmp_plist"
 if [[ -n "$soclimit" ]]; then
   echo "$soclimit"
 else
-  echo "soclimit is NOT set"
+  echo "No soclimit setting found"
 fi
 
 exit 0
