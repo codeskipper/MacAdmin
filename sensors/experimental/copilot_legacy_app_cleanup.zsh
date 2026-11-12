@@ -41,9 +41,10 @@ logfile="/tmp/${this_script_name}.log"
 # write timestamp + message to logfile + stdout
 function log() {
     timestamp=$(date +%Y-%m-%d\ %H:%M:%S%z)
-    message="$timestamp [$this_script_name] $1"
-    echo "$message"
+    # message="$timestamp [$this_script_name] $1"
+    message="$timestamp - $1"
     echo "$message" >> "${logfile}"
+		echo "$1"
 }
 
 # read a key from the app bundle's Info.plist, prints nothing if unreadable
@@ -63,25 +64,27 @@ version=$(bundle_value CFBundleShortVersionString)
 [[ -z "$version" ]] && version=$(bundle_value CFBundleVersion)
 
 if [[ "$id" == "$LEGACY_ID" ]]; then
+		# graceful quit of the legacy app before removing it, in case it's running, will only work if the app is running in the current user context, not root
     /usr/bin/osascript -e "quit app id \"$LEGACY_ID\"" >/dev/null 2>&1
     sleep 2
+
     if /bin/rm -rf "$APP"; then
         /usr/sbin/pkgutil --forget "$LEGACY_ID" >/dev/null 2>&1
-        log "Removed legacy ${version:-unknown}"
+        log "Removed legacy version ${version:-unknown}"
     else
-        log "Removal failed $id"
+        log "Removal failed, app-id $id"
     fi
     exit 0
 fi
 
 if [[ -z "$id" ]]; then
     if /bin/rm -rf "$APP"; then
-        log "Removed unreadable bundle"
+        log "Removed unreadable bundle $APP"
     else
-        log "Removal failed unknown"
+        log "Removal failed, reason unknown"
     fi
     exit 0
 fi
 
-log "Current $id ${version:-unknown}"
+log "Current version: $id ${version:-unknown}"
 exit 0
