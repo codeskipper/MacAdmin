@@ -31,7 +31,7 @@ fi
 # extract soclimit from the decoded NSKeyedArchiver plist
 # $objects is the keyed archiver array; index 2 is the manualChargeLimit ChargeCtrlPolicy object
 soclimit=$(/usr/bin/plutil -extract '$objects'.2.soclimit raw -o - "$tmp_plist" 2>/dev/null)
-rm -f "$tmp_plist"
+# rm -f "$tmp_plist"
 
 if [[ -n "$soclimit" ]]; then
   echo "$soclimit"
