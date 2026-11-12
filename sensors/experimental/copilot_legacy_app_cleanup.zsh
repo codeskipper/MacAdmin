@@ -16,7 +16,7 @@
 #   "Removed unreadable bundle <path>"          - bundle at path had no readable bundle ID, removed
 #   "Current version: <bundle id> <version>"    - new app (or other bundle) present, left alone
 #   "Removal failed, app-id <bundle id>"        - rm failed (e.g. SIP/permissions)
-# Once a removal has happened it is recorded in MARKER and every later report is prefixed with
+# Once a removal has happened it is recorded in the MARKER file and every later report is prefixed with
 #   "Removed legacy version <version> on <date>; " so the sensor value stays countable, e.g. in an
 # Intelligence report filtered on sensor value starting with "Removed legacy".
 
